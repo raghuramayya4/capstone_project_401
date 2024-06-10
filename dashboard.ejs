@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: 'Roboto', sans-serif;
+          background: #CC6633;
+          background-size: cover;
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .container {
+          background: white;
+          border-radius: 10px;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+          width: 350px;
+          padding: 30px;
+          box-sizing: border-box;
+          text-align: center;
+        }
+
+        h2 {
+          text-align: center;
+          margin-bottom: 30px;
+          font-size: 24px;
+          font-weight: bold;
+        }
+
+        .container p {
+          font-size: 16px;
+          color: #333;
+          font-weight: bold;
+        }
+
+        .container input {
+          width: 285px;
+          padding: 10px;
+          margin-bottom: 15px;
+          border: 2px solid brown;
+          border-radius: 3px;
+        }
+
+        .container button {
+            width: 100%;
+            padding: 10px;
+            background-color:brown;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: medium;
+        }
+
+        .container button:hover {
+            background-color: #CC6633;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <h2>Welcome to your Dashboard, <%= username %>!</h2>
+    
+    <div class="container">
+      <p>Enter the name of a celebrity to get details : </p>
+      <input type="text" id="name" placeholder="Enter celebrity name">
+      <button onclick="getDetails()">Get celebrity Details</button>
+      <div class="details" id="details"></div>
+    </div>
+    <script>
+      async function getDetails() {
+            const name = document.getElementById('name').value;
+            const celebDetails = document.getElementById('details');
+            celebDetails.innerHTML = '';
+
+            if (name === '') {
+                alert('Please enter a celebrity name.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://api.api-ninjas.com/v1/celebrity?name=${name}`, {
+                    headers: { 'X-Api-Key': 'NM+egItk9r+yoqJqq9AdXg==kaZgcd46w1BMccWt' }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+
+                const data = await response.json();
+                if (data.length === 0) {
+                    celebDetails.innerHTML = '<p>No details found for the specified celebrity.</p>';
+                    return;
+                }              
+
+                const celebInfo = `
+                    <div>
+                        <p>Name: ${data[0].name}</p>
+                        <p>Net Worth: ${data[0].net_worth}</p>
+                        <p>Gender: ${data[0].gender}</p>
+                        <p>Nationality: ${data[0].nationality}</p>
+                        <p>Occupation: ${data[0].occupation[0]}</p>
+                        <p>Height: ${data[0].height}</p>
+                        <p>Date of Birth: ${data[0].birthday}</p>
+                        <p>Age: ${data[0].age}</p>
+                    </div>
+                `;
+                celebDetails.innerHTML = celebInfo;
+
+            } catch (error) {
+                celebDetails.innerHTML = `<p>Error fetching celebrity details: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
