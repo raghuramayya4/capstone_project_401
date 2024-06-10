@@ -1,0 +1,92 @@
+/* styles.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #CC6633;
+    background-size: cover;
+    height: 100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-align: center;
+    margin-bottom: 20px;
+}
+
+.container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.container input {
+    width: 285px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid brown;
+    border-radius: 3px;
+}
+
+.container button {
+    width: 100%;
+    padding: 10px;
+    background-color:brown;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: medium;
+}
+
+.container button:hover {
+    background-color: #CC6633;
+}
+
+.container2 {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    padding: 20px;
+    box-sizing: border-box;
+    height: auto;
+    text-align: center;
+}
+
+.container2 button {
+    width: 100%;
+    padding: 10px;
+    background-color:brown;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: medium;
+}
+
+.container2 button:hover {
+    background-color: #CC6633;
+}
